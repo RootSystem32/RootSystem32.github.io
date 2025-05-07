@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет</title>
+    <h1>До дня рождения осталось:</h1>
+    <style>
+       
+       .custom-btn {
+            background-color: #161616;
+            color: #5d3fd3;
+            border: 1px solid #5d3fd3;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 90px;            
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .custom-btn:hover {
+            background-color: #5d3fd3;
+            color: white;
+        }
+          .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           } 
+            
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a;
+        }
+        
+        h1 {
+           color:#5d3fd3;
+           text-align: center ;
+        }
+        
+        p {
+           color:#a0a0a0;
+           text-align: center;
+           font-size: 15px;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+        }
+
+        #main-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #5d3fd3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        #timer {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        #arrow {
+            position: absolute;
+            width: 4px;
+            height: 45%;
+            background: red;
+            top: 5%;
+            left: 50%;
+            transform-origin: bottom;
+            transition: transform 0.5s;
+            z-index: 0;
+        }
+
+        #counter {
+            font-size: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color:#5d3fd3;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle-container">
+        <div id="main-circle">
+            <div id="timer"></div>
+            <div id="arrow"></div>
+        </div>
+    </div>
+    <div id="counter"></div>
+    
+
+    <script>
+        function updateTimer() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            
+            let targetDate = new Date(currentYear, 6, 28);
+            if(now > targetDate) {
+                targetDate.setFullYear(currentYear + 1);
+            }
+            
+            const diff = targetDate - now;
+            
+        const startDate = new Date(2008, 6, 28);
+             const totalDiff = now - startDate;
+
+    const seconds = Math.floor(diff / 1000 % 60);
+    const minutes = Math.floor(diff / 1000 / 60 % 60);
+    const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24) % 30);
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
+
+            
+            document.getElementById('timer').innerHTML = `
+                ${months}М ${days}Д<br>
+                ${hours}Ч ${minutes}М ${seconds}С
+            `;
+
+            const fullYear = 1000 * 60 * 60 * 24 * 365;
+            const angle = (360 * (1 - (diff / fullYear))) % 360;
+            document.getElementById('arrow').style.transform = `rotate(${angle}deg)`;
+
+            const totalSeconds = Math.floor(totalDiff / 1000);
+            const totalYears = Math.floor(totalDiff / (1000 * 60 * 60 * 24 * 365));
+            const remaining = totalDiff % (1000 * 60 * 60 * 24 * 365);
+            const totalMonths = Math.floor(remaining / (1000 * 60 * 60 * 24 * 30));
+            
+            document.getElementById('counter').innerHTML = `
+                Прошло с 28 июля 2008 года:<br>
+${totalYears}Лет, ${totalMonths} месяцев, ${Math.floor(totalSeconds/86400)} дней 
+
+            `;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+    
+     <div class="container"></div>
+     
+    <hr align="center" width="350" size="1" color="#a0a0a0"/>  
+    <div class="container">
+        <a href="index2.html" class="custom-btn">Назад</a>
+    </div>
+    
+    <footer>
+           
+        <p>&copy; Алехандро епта</p>
+        <p>tg:@l1nux_root</p>
+
+    </footer>  
+</body>
+</html>
