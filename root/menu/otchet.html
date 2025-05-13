@@ -1,158 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отчет</title>
-    <h1>До дня рождения осталось:</h1>
+     <link rel="stylesheet"" href="css/styles.css">
+    <title>Отсчёт до дня рождения Анны</title>
     <style>
-       
-       .custom-btn {
-            background-color: #161616;
-            color: #5d3fd3;
-            border: 1px solid #5d3fd3;
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 90px;            
-            font-family: Arial, sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .custom-btn:hover {
-            background-color: #5d3fd3;
-            color: white;
-        }
-          .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-           } 
-            
         body {
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0a0a0a;
+            background-color: #f5f5f5;
+            padding: 20px;
+            box-sizing: border-box;
         }
         
-        h1 {
-           color:#5d3fd3;
-           text-align: center ;
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
         }
         
-        p {
-           color:#a0a0a0;
-           text-align: center;
-           font-size: 15px;
-        }
-
-        .circle-container {
+        .circle {
             position: relative;
             width: 400px;
             height: 400px;
-            margin: 20px;
-        }
-
-        #main-circle {
-            width: 100%;
-            height: 100%;
             border-radius: 50%;
-            background: #5d3fd3;
+            background-color: #5d3fd3;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(93, 63, 211, 0.3);
         }
-
-        #timer {
+        
+        .countdown {
             color: white;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .countdown h1 {
             font-size: 24px;
-            text-align: center;
-            z-index: 1;
+            margin-bottom: 20px;
         }
-
-        #arrow {
-            position: absolute;
-            width: 4px;
-            height: 45%;
-            background: red;
-            top: 5%;
-            left: 50%;
-            transform-origin: bottom;
-            transition: transform 0.5s;
-            z-index: 0;
-        }
-
-        #counter {
+        
+        .countdown div {
             font-size: 20px;
-            margin-top: 30px;
+            margin: 5px 0;
+        }
+        
+        .arrow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 6px;
+            height: 200px;
+            background-color: red;
+            transform-origin: bottom center;
+            z-index: 1;
+            border-radius: 3px;
+            transform: translateX(-50%) rotate(0deg);
+        }
+        
+        .history {
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .history h2 {
+            color: #5d3fd3;
             text-align: center;
-            color:#5d3fd3;
+            margin-top: 0;
+        }
+        
+        .history-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .birthday-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(93, 63, 211, 0.9);
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .circle {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .arrow {
+                height: 150px;
+            }
+            
+            .countdown h1 {
+                font-size: 20px;
+            }
+            
+            .countdown div {
+                font-size: 16px;
+            }
+            
+            .birthday-message {
+                font-size: 32px;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="circle-container">
-        <div id="main-circle">
-            <div id="timer"></div>
-            <div id="arrow"></div>
+    <div class="container">
+        <div class="circle">
+            <div class="arrow"></div>
+            <div class="countdown">
+                <h1>До дня рождения Анны осталось:</h1>
+                <div id="months">0 месяцев</div>
+                <div id="days">0 дней</div>
+                <div id="hours">0 часов</div>
+                <div id="minutes">0 минут</div>
+                <div id="seconds">0 секунд</div>
+            </div>
+        </div>
+        
+        <div class="history">
+            <h2>История с 28 июля 2008 года</h2>
+            <div id="history-content"></div>
         </div>
     </div>
-    <div id="counter"></div>
     
-
+    <div class="birthday-message" id="birthdayMessage">
+        <h1>С днём рождения Анна!</h1>
+        <p>🎉 🎂 🎈</p>
+    </div>
+    
     <script>
-        function updateTimer() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            const arrow = document.querySelector('.arrow');
+            const monthsEl = document.getElementById('months');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const historyContent = document.getElementById('history-content');
+            const birthdayMessage = document.getElementById('birthdayMessage');
             
-            let targetDate = new Date(currentYear, 6, 28);
-            if(now > targetDate) {
-                targetDate.setFullYear(currentYear + 1);
+            // Дата рождения (28 июля)
+            const birthDay = 28;
+            const birthMonth = 6; // 0-январь, 6-июль
+            
+            // Дата начала отсчёта (28 июля 2008 года)
+            const startDate = new Date(2008, birthMonth, birthDay);
+            
+            function updateCountdown() {
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                
+                // Определяем следующую дату дня рождения
+                let nextBirthday = new Date(currentYear, birthMonth, birthDay);
+                if (now > nextBirthday) {
+                    nextBirthday = new Date(currentYear + 1, birthMonth, birthDay);
+                }
+                
+                // Проверяем, не сегодня ли день рождения (с 28 по 29 июля)
+                const isBirthday = now.getMonth() === birthMonth && 
+                                  now.getDate() === birthDay && 
+                                  now.getHours() < 24;
+                
+                if (isBirthday) {
+                    birthdayMessage.style.display = 'flex';
+                } else {
+                    birthdayMessage.style.display = 'none';
+                }
+                
+                // Разница во времени
+                const diff = nextBirthday - now;
+                
+                // Рассчитываем оставшееся время
+                const totalSeconds = Math.floor(diff / 1000);
+                const totalMinutes = Math.floor(totalSeconds / 60);
+                const totalHours = Math.floor(totalMinutes / 60);
+                const totalDays = Math.floor(totalHours / 24);
+                
+                const months = Math.floor(totalDays / 30.44);
+                const days = totalDays % 365;
+                const hours = totalHours % 24;
+                const minutes = totalMinutes % 60;
+                const seconds = totalSeconds % 60;
+                
+                // Обновляем отображение
+                monthsEl.textContent = `${months} месяцев`;
+                daysEl.textContent = `${days} дней`;
+                hoursEl.textContent = `${hours} часов`;
+                minutesEl.textContent = `${minutes} минут`;
+                secondsEl.textContent = `${seconds} секунд`;
+                
+                // Обновляем положение стрелки
+                const progress = 1 - (diff / (365 * 24 * 60 * 60 * 1000));
+                const rotation = progress * 360;
+                arrow.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+                
+                // Обновляем историю
+                updateHistory(now);
             }
             
-            const diff = targetDate - now;
+            function updateHistory(now) {
+                // Рассчитываем время с 28 июля 2008 года
+                const diff = now - startDate;
+                const totalSeconds = Math.floor(diff / 1000);
+                const totalMinutes = Math.floor(totalSeconds / 60);
+                const totalHours = Math.floor(totalMinutes / 60);
+                const totalDays = Math.floor(totalHours / 24);
+                const totalMonths = Math.floor(totalDays / 30.44);
+                const totalYears = Math.floor(totalDays / 365.25);
+                
+                const years = totalYears;
+                const months = totalMonths % 12;
+                const days = Math.floor(totalDays % 365.25);
+                const hours = totalHours % 24;
+                const minutes = totalMinutes % 60;
+                const seconds = totalSeconds % 60;
+                
+                // Форматируем историю
+                historyContent.innerHTML = `
+                    <div class="history-item">
+                        <strong>С 28 июля 2008 года прошло:</strong><br>
+                        ${years} лет, ${months} месяцев, ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд
+                    </div>
+                    <div class="history-item">
+                        <strong>В днях:</strong> ${totalDays} дней
+                    </div>
+                    <div class="history-item">
+                        <strong>В часах:</strong> ${totalHours} часов
+                    </div>
+                    <div class="history-item">
+                        <strong>В минутах:</strong> ${totalMinutes} минут
+                    </div>
+                    <div class="history-item">
+                        <strong>В секундах:</strong> ${totalSeconds} секунд
+                    </div>
+                `;
+            }
             
-        const startDate = new Date(2008, 6, 28);
-             const totalDiff = now - startDate;
-
-    const seconds = Math.floor(diff / 1000 % 60);
-    const minutes = Math.floor(diff / 1000 / 60 % 60);
-    const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24) % 30);
-    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
-
-            
-            document.getElementById('timer').innerHTML = `
-                ${months}М ${days}Д<br>
-                ${hours}Ч ${minutes}М ${seconds}С
-            `;
-
-            const fullYear = 1000 * 60 * 60 * 24 * 365;
-            const angle = (360 * (1 - (diff / fullYear))) % 360;
-            document.getElementById('arrow').style.transform = `rotate(${angle}deg)`;
-
-            const totalSeconds = Math.floor(totalDiff / 1000);
-            const totalYears = Math.floor(totalDiff / (1000 * 60 * 60 * 24 * 365));
-            const remaining = totalDiff % (1000 * 60 * 60 * 24 * 365);
-            const totalMonths = Math.floor(remaining / (1000 * 60 * 60 * 24 * 30));
-            
-            document.getElementById('counter').innerHTML = `
-                Прошло с 28 июля 2008 года:<br>
-${totalYears}Лет, ${totalMonths} месяцев, ${Math.floor(totalSeconds/86400)} дней 
-
-            `;
-        }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
+            // Обновляем каждую секунду
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
     </script>
+</body>
+</html>
     
      <div class="container"></div>
      
