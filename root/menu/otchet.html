@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet"" href="css/styles.css">
-    <title>Отсчёт до дня рождения Анны</title>
+    <title>Отсчет до дня рождения Анны</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,286 +14,220 @@
             min-height: 100vh;
             margin: 0;
             background-color: #f5f5f5;
-            padding: 20px;
-            box-sizing: border-box;
         }
         
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 800px;
+            text-align: center;
+            margin-bottom: 30px;
         }
         
         .circle {
-            position: relative;
             width: 400px;
             height: 400px;
             border-radius: 50%;
             background-color: #5d3fd3;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(93, 63, 211, 0.3);
+            position: relative;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
         
-        .countdown {
+        .timer {
             color: white;
-            text-align: center;
-            z-index: 2;
-        }
-        
-        .countdown h1 {
             font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .countdown div {
-            font-size: 20px;
-            margin: 5px 0;
-        }
-        
-        .arrow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 6px;
-            height: 200px;
-            background-color: red;
-            transform-origin: bottom center;
-            z-index: 1;
-            border-radius: 3px;
-            transform: translateX(-50%) rotate(0deg);
-        }
-        
-        .history {
-            width: 100%;
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-        
-        .history h2 {
-            color: #5d3fd3;
+            font-weight: bold;
+            z-index: 2;
             text-align: center;
-            margin-top: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
         }
         
-        .history-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .history-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .birthday-message {
-            display: none;
-            position: fixed;
+        .arrow-container {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(93, 63, 211, 0.9);
-            z-index: 100;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 48px;
-            text-align: center;
-            animation: pulse 2s infinite;
+            border-radius: 50%;
+        }
+        
+        .arrow {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 6px;
+            height: 180px;
+            background-color: red;
+            transform-origin: 50% 180px;
+            z-index: 1;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-left: -3px;
+        }
+        
+        .history {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .birthday-message {
+            font-size: 32px;
+            color: #d33f5d;
+            font-weight: bold;
+            margin: 20px 0;
+            animation: pulse 1.5s infinite;
+            display: none;
         }
         
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
         
-        @media (max-width: 600px) {
-            .circle {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .arrow {
-                height: 150px;
-            }
-            
-            .countdown h1 {
-                font-size: 20px;
-            }
-            
-            .countdown div {
-                font-size: 16px;
-            }
-            
-            .birthday-message {
-                font-size: 32px;
-                padding: 20px;
-            }
+        .time-unit {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        
+        .time-value {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .time-label {
+            font-size: 14px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="circle">
-            <div class="arrow"></div>
-            <div class="countdown">
-                <h1>До дня рождения Анны осталось:</h1>
-                <div id="months">0 месяцев</div>
-                <div id="days">0 дней</div>
-                <div id="hours">0 часов</div>
-                <div id="minutes">0 минут</div>
-                <div id="seconds">0 секунд</div>
+            <div class="arrow-container">
+                <div class="arrow" id="arrow"></div>
             </div>
+            <div class="timer" id="timer"></div>
         </div>
-        
-        <div class="history">
-            <h2>История с 28 июля 2008 года</h2>
-            <div id="history-content"></div>
-        </div>
+        <div class="birthday-message" id="birthdayMessage">С днем рождения Анна!</div>
     </div>
     
-    <div class="birthday-message" id="birthdayMessage">
-        <h1>С днём рождения Анна!</h1>
-        <p>🎉 🎂 🎈</p>
+    <div class="history">
+        <h2>История с 28 июля 2008 года</h2>
+        <div id="historyTimer"></div>
     </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const arrow = document.querySelector('.arrow');
-            const monthsEl = document.getElementById('months');
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
-            const historyContent = document.getElementById('history-content');
-            const birthdayMessage = document.getElementById('birthdayMessage');
-            
-            // Дата рождения (28 июля)
-            const birthDay = 28;
-            const birthMonth = 6; // 0-январь, 6-июль
-            
-            // Дата начала отсчёта (28 июля 2008 года)
-            const startDate = new Date(2008, birthMonth, birthDay);
-            
-            function updateCountdown() {
-                const now = new Date();
-                const currentYear = now.getFullYear();
-                
-                // Определяем следующую дату дня рождения
-                let nextBirthday = new Date(currentYear, birthMonth, birthDay);
-                if (now > nextBirthday) {
-                    nextBirthday = new Date(currentYear + 1, birthMonth, birthDay);
-                }
-                
-                // Проверяем, не сегодня ли день рождения (с 28 по 29 июля)
-                const isBirthday = now.getMonth() === birthMonth && 
-                                  now.getDate() === birthDay && 
-                                  now.getHours() < 24;
-                
-                if (isBirthday) {
-                    birthdayMessage.style.display = 'flex';
-                } else {
-                    birthdayMessage.style.display = 'none';
-                }
-                
-                // Разница во времени
-                const diff = nextBirthday - now;
-                
-                // Рассчитываем оставшееся время
-                const totalSeconds = Math.floor(diff / 1000);
-                const totalMinutes = Math.floor(totalSeconds / 60);
-                const totalHours = Math.floor(totalMinutes / 60);
-                const totalDays = Math.floor(totalHours / 24);
-                
-                const months = Math.floor(totalDays / 30.44);
-                const days = totalDays % 365;
-                const hours = totalHours % 24;
-                const minutes = totalMinutes % 60;
-                const seconds = totalSeconds % 60;
-                
-                // Обновляем отображение
-                monthsEl.textContent = `${months} месяцев`;
-                daysEl.textContent = `${days} дней`;
-                hoursEl.textContent = `${hours} часов`;
-                minutesEl.textContent = `${minutes} минут`;
-                secondsEl.textContent = `${seconds} секунд`;
-                
-                // Обновляем положение стрелки
-                const progress = 1 - (diff / (365 * 24 * 60 * 60 * 1000));
-                const rotation = progress * 360;
-                arrow.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
-                
-                // Обновляем историю
-                updateHistory(now);
-            }
-            
-            function updateHistory(now) {
-                // Рассчитываем время с 28 июля 2008 года
-                const diff = now - startDate;
-                const totalSeconds = Math.floor(diff / 1000);
-                const totalMinutes = Math.floor(totalSeconds / 60);
-                const totalHours = Math.floor(totalMinutes / 60);
-                const totalDays = Math.floor(totalHours / 24);
-                const totalMonths = Math.floor(totalDays / 30.44);
-                const totalYears = Math.floor(totalDays / 365.25);
-                
-                const years = totalYears;
-                const months = totalMonths % 12;
-                const days = Math.floor(totalDays % 365.25);
-                const hours = totalHours % 24;
-                const minutes = totalMinutes % 60;
-                const seconds = totalSeconds % 60;
-                
-                // Форматируем историю
-                historyContent.innerHTML = `
-                    <div class="history-item">
-                        <strong>С 28 июля 2008 года прошло:</strong><br>
-                        ${years} лет, ${months} месяцев, ${days} дней, ${hours} часов, ${minutes} минут, ${seconds} секунд
-                    </div>
-                    <div class="history-item">
-                        <strong>В днях:</strong> ${totalDays} дней
-                    </div>
-                    <div class="history-item">
-                        <strong>В часах:</strong> ${totalHours} часов
-                    </div>
-                    <div class="history-item">
-                        <strong>В минутах:</strong> ${totalMinutes} минут
-                    </div>
-                    <div class="history-item">
-                        <strong>В секундах:</strong> ${totalSeconds} секунд
-                    </div>
-                `;
-            }
-            
-            // Обновляем каждую секунду
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        });
-    </script>
-<div class="container"></div> 
-    <hr align="center" width="350" size="1" color="#a0a0a0"/>  
-    <div class="container">
-        <a href="index2.html" class="custom-btn">Назад</a>
-    </div>
-    
-    <footer>
-           
-        <p>&copy; Алехандро епта</p>
-        <p>tg:@l1nux_root</p>
 
-    </footer>  
+    <script>
+        function updateTimers() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            
+            // Определяем следующий день рождения
+            let nextBirthday = new Date(currentYear, 6, 28); // 28 июля (месяцы 0-11)
+            
+            // Если день рождения уже прошел в этом году, берем следующий год
+            if (now > nextBirthday) {
+                nextBirthday = new Date(currentYear + 1, 6, 28);
+            }
+            
+            // Разница времени до следующего дня рождения
+            const diff = nextBirthday - now;
+            
+            // Проверяем, сегодня ли день рождения (с 28 июля 00:00 до 29 июля 00:00)
+            const isBirthday = now.getMonth() === 6 && now.getDate() === 28;
+            
+            // Показываем/скрываем поздравление
+            const birthdayMessage = document.getElementById('birthdayMessage');
+            birthdayMessage.style.display = isBirthday ? 'block' : 'none';
+            
+            // Рассчитываем время
+            const seconds = Math.floor(diff / 1000) % 60;
+            const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) % 12;
+            
+            // Обновляем таймер
+            document.getElementById('timer').innerHTML = `
+                <div class="time-unit">
+                    <div class="time-value">${months}</div>
+                    <div class="time-label">Месяцы</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${days}</div>
+                    <div class="time-label">Дни</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${hours}</div>
+                    <div class="time-label">Часы</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${minutes}</div>
+                    <div class="time-label">Минуты</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${seconds}</div>
+                    <div class="time-label">Секунды</div>
+                </div>
+            `;
+            
+            // Обновляем позицию стрелки (0-360 градусов)
+            const totalMsInYear = 365.25 * 24 * 60 * 60 * 1000;
+            const progress = 1 - (diff / totalMsInYear);
+            const angle = progress * 360;
+            document.getElementById('arrow').style.transform = `rotate(${angle}deg)`;
+            
+            // Рассчитываем время с 28 июля 2008 года
+            const initialDate = new Date(2008, 6, 28);
+            const totalDiff = now - initialDate;
+            
+            const totalSeconds = Math.floor(totalDiff / 1000) % 60;
+            const totalMinutes = Math.floor(totalDiff / (1000 * 60)) % 60;
+            const totalHours = Math.floor(totalDiff / (1000 * 60 * 60)) % 24;
+            const totalDays = Math.floor(totalDiff / (1000 * 60 * 60 * 24)) % 30;
+            const totalMonths = Math.floor(totalDiff / (1000 * 60 * 60 * 24 * 30)) % 12;
+            const totalYears = Math.floor(totalDiff / (1000 * 60 * 60 * 24 * 365.25));
+            
+            // Обновляем исторический таймер
+            document.getElementById('historyTimer').innerHTML = `
+                <p>С 28 июля 2008 года прошло:</p>
+                <div class="time-unit">
+                    <div class="time-value">${totalYears}</div>
+                    <div class="time-label">Лет</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${totalMonths}</div>
+                    <div class="time-label">Месяцев</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${totalDays}</div>
+                    <div class="time-label">Дней</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${totalHours}</div>
+                    <div class="time-label">Часов</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${totalMinutes}</div>
+                    <div class="time-label">Минут</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value">${totalSeconds}</div>
+                    <div class="time-label">Секунд</div>
+                </div>
+            `;
+        }
+        
+        // Обновляем таймер каждую секунду
+        setInterval(updateTimers, 1000);
+        updateTimers(); // Инициализация сразу
+    </script>
 </body>
 </html>
