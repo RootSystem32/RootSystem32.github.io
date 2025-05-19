@@ -3,19 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        document.addEventListener('copy', function(e) {
-            // Получаем текущий URL и заменяем Info.html на Index.html
-            const newUrl = window.location.href.replace('Info.html', 'Index.html');
-            
-            // Копируем изменённый URL в буфер обмена
-            e.clipboardData.setData('text/plain', newUrl);
-            e.preventDefault();
-            
-            // Опционально: показать уведомление
-            alert('Ссылка скопирована: ' + newUrl);
-        });
-    </script>
     <title>Соглашение</title>
     <style>
         body {
