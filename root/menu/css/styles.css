@@ -30,8 +30,8 @@ nav ul li a {
 
   
 .box {
-  width: 400px;
-  height: 1050px;
+  width: auto;
+  height: auto;
   background:#161616;
   margin-left: auto; 
   margin-right: auto;
@@ -40,8 +40,8 @@ nav ul li a {
 }
 
 .square {
-  width: 400px;
-  height: 370px;
+  width: auto;
+  height: auto;
   background:#161616;
   margin-left: auto; 
   margin-right: auto;
@@ -58,8 +58,8 @@ nav ul li a {
 }
 
 .circle {
-  width: 400px;
-  height: 590px;
+  width: auto;
+  height: auto;
   background:#161616;
   margin-left: auto; 
   margin-right: auto;
@@ -68,8 +68,8 @@ nav ul li a {
 }
 
 .rectangle {
-  width: 400px;
-  height: 1270px;
+  width: auto;
+  height: auto;
   background:#161616;
   margin-left: auto; 
   margin-right: auto;
@@ -77,14 +77,14 @@ nav ul li a {
   border-radius: 30px;
 }
 .oval {
- width: 200px;
-	height: 100px;
+ width: auto ;
+	height: auto;
 	background: red;
 	} 
 
 .squaree {
-  width: 400px;
-  height: 370px;
+  width: auto;
+  height: auto;
   background:#161616;
   margin-left: auto; 
   margin-right: auto;
