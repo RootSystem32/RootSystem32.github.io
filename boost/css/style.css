@@ -50,12 +50,13 @@ body {
         }
 
         .service {
-            background-color: #222;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 250px;
-            border: 1px solid #333;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(93, 63, 211, 0.5);
+            margin-top: 20px;
         }
 
         .price {
