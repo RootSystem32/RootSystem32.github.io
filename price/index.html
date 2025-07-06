@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Буст званий Standoff 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #161616;
+            color: #5d3fd3;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(93, 63, 211, 0.5);
+            margin-top: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #5d3fd3;
+            text-shadow: 0 0 5px rgba(93, 63, 211, 0.5);
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .price-table th, .price-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #5d3fd3;
+        }
+        .price-table th {
+            background-color: rgba(93, 63, 211, 0.2);
+        }
+        .price-table tr:nth-child(even) {
+            background-color: rgba(93, 63, 211, 0.1);
+        }
+        .note {
+            background-color: rgba(93, 63, 211, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .highlight {
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Буст званий в Standoff 2</h1>
+        
+        <h2>Наши прайсы</h2>
+        
+        <table class="price-table">
+            <tr>
+                <th>Тип буста</th>
+                <th>Цена</th>
+                <th>Описание</th>
+            </tr>
+            <tr>
+                <td>Честный буст</td>
+                <td>от 300 рублей</td>
+                <td>Буст без использования сторонних программ</td>
+            </tr>
+            <tr>
+                <td>Нечестный буст</td>
+                <td>от 500 рублей</td>
+                <td>Буст с использованием сторонних программ</td>
+            </tr>
+        </table>
+        
+        <h2>Расчет стоимости буста</h2>
+        
+        <div class="note">
+            <p><strong>Формула расчета:</strong> стоимость = количество делений × 25 рублей</p>
+            <p><strong>Пример:</strong> Если у вас GOLD 1 и вы хотите буст честным способом до GOLD 4 (12 делений), то стоимость будет: 12 × 25 = <span class="highlight">300 рублей</span></p>
+            <p><strong>Цена за 1 ммр:</strong> 0.25 рубля (25 копеек)</p>
+            <p>После того как вы вычитали стоимость буста, не забудьте добавить эту сумму к той сумме буста, тобиш честный способом буст, или не честным способом, напомню, честный способ 300р как минимум, и к этой сумме плюсуете ту сумму, которую вы получили, по примеру сверху, у вас буст получится 600р, а если вы выбрали буст не честным способом, то буст будет стоить 800р</p>
+        </div>
+        
+        <h2>Таблица делений между званиями</h2>
+        
+        <table class="price-table">
+            <tr>
+                <th>От звания</th>
+                <th>До звания</th>
+                <th>Количество делений</th>
+                <th>Цена(честн.)</th>
+            </tr>
+            <tr>
+                <td>GOLD 1</td>
+                <td>GOLD 2</td>
+                <td>1</td>
+                <td>325 рублей</td>
+            </tr>
+            <tr>
+                <td>GOLD 1</td>
+                <td>GOLD 3</td>
+                <td>3</td>
+                <td>375 рублей</td>
+            </tr>
+            <tr>
+                <td>GOLD 1</td>
+                <td>GOLD 4</td>
+                <td>4</td>
+                <td>400 рублей</td>
+            </tr>
+            <tr>
+                <td>GOLD 2</td>
+                <td>GOLD 4</td>
+                <td>2</td>
+                <td>350 рублей</td>
+            </tr>
+            <!-- Можно добавить больше строк по аналогии -->
+        </table>
+        
+        <h2>Таблица делений между званиями #2</h2>
+        
+        <table class="price-table">
+            <tr>
+                <th>От звания</th>
+                <th>До звания</th>
+                <th>Количество делений</th>
+                <th>Цена(нечестн.)</th>
+            </tr>
+            <tr>
+                <td>GOLD 1</td>
+                <td>GOLD 2</td>
+                <td>1</td>
+                <td>525 рублей</td>
+            </tr>
+            <tr>
+                <td>GOLD 1</td>
+                <td>GOLD 3</td>
+                <td>3</td>
+                <td>575 рублей</td>
+            </tr>
+            <tr>
+                <td>GOLD 1</td>
+                <td>GOLD 4</td>
+                <td>4</td>
+                <td>600 рублей</td>
+            </tr>
+            <tr>
+                <td>GOLD 2</td>
+                <td>GOLD 4</td>
+                <td>2</td>
+                <td>550 рублей</td>
+            </tr>
+            <!-- Можно добавить больше строк по аналогии -->
+        </table>
+        
+        <h2>Таблица для расчёта цены буста</h2>
+        
+        <table class="price-table">
+            <tr>
+                <th>От звания</th>
+                <th>До звания</th>
+                <th>Количество ммр</th>
+                <th>Цена(честн.)</th>
+            </tr>
+            <tr>
+                <td>Феникс</td>
+                <td>Ренджер</td>
+                <td>100</td>
+                <td>325 рублей</td>
+            </tr>
+            <tr>
+                <td>Феникс</td>
+                <td>Чемпион</td>
+                <td>200</td>
+                <td>350 рублей</td>
+            </tr>
+            <tr>
+                <td>Феникс</td>
+                <td>Мастер</td>
+                <td>300</td>
+                <td>375 рублей</td>
+            </tr>
+            <tr>
+                <td>Феникс</td>
+                <td>Легенда</td>
+                <td>500</td>
+                <td>425 рублей</td>
+            </tr>
+            <!-- Можно добавить больше строк по аналогии -->
+        </table>
+        
+        <div class="note">
+            <p>Для точного расчета стоимости вашего буста свяжитесь с нами!</p>
+            <p>Мы гарантируем качественное выполнение заказа в кратчайшие сроки.(максимум неделя)</p>
+        </div>
+    </div>
+    <div class="container">
+    <footer>
+    <p>© 2025 SO2 BOOST. Официальный сервис.</p>
+    </footer>
+    </div>
+</body>
+</html>
