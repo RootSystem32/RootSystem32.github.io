@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HEOMP VPN — безопасный интернет</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Главная страница -->
+        <div id="mainPage" class="page active-page">
+            <div class="greeting">
+                <h2>Здравствуйте, 👋</h2>
+                <p>Добро пожаловать в HEOMP VPN</p>
+            </div>
+
+            <div class="vpn-name">
+                <h1>HEOMP VPN</h1>
+            </div>
+
+            <div class="user-id">
+                🆔 ID: <span id="userId">10000</span>
+            </div>
+
+            <div class="stats-card">
+                <div class="stat-row">
+                    <span class="stat-label">💰 Баланс</span>
+                    <span class="stat-value" id="balance">0 ₽</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">📅 Дней до окончания</span>
+                    <span class="stat-value" id="daysLeft">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🔌 Устройств подключено</span>
+                    <span class="stat-value" id="devicesCount">0 / 3</span>
+                </div>
+            </div>
+
+            <div class="button-grid">
+                <button class="btn btn-primary" id="topUpBtn">💳 Пополнить баланс</button>
+                <button class="btn" id="supportBtn">🆘 Написать в поддержку</button>
+                <button class="btn" id="freeProxyBtn">🆓 Прокси для Telegram</button>
+                <button class="btn" id="newsBtn">📢 Новости сервиса</button>
+            </div>
+        </div>
+
+        <!-- Страница "Устройства" -->
+        <div id="devicesPage" class="page">
+            <div class="greeting">
+                <h2>📱 Мои устройства</h2>
+                <p>Ключи и подключения</p>
+            </div>
+
+            <div id="devicesList" class="devices-list"></div>
+
+            <button class="btn btn-primary" id="addDeviceBtn">➕ Добавить устройство (100 ₽)</button>
+        </div>
+
+        <!-- Страница "Оплата" -->
+        <div id="paymentPage" class="page">
+            <div class="greeting">
+                <h2>💎 Выберите тариф</h2>
+                <p>Продлите защиту на любой срок</p>
+            </div>
+
+            <div class="pricing-list">
+                <div class="pricing-item" data-days="30" data-price="150">
+                    <span>📅 1 месяц</span>
+                    <span class="price-tag">150 ₽</span>
+                </div>
+                <div class="pricing-item" data-days="90" data-price="350">
+                    <span>📅 3 месяца</span>
+                    <span class="price-tag">350 ₽</span>
+                </div>
+                <div class="pricing-item" data-days="180" data-price="700">
+                    <span>📅 6 месяцев</span>
+                    <span class="price-tag">700 ₽</span>
+                </div>
+            </div>
+            <div class="info-note">
+                🔐 Оплата через защищённый протокол<br>Paypear API (скоро)
+            </div>
+        </div>
+
+        <!-- Страница "Опции / Расход" -->
+        <div id="optionsPage" class="page">
+            <div class="greeting">
+                <h2>📊 Расход за всё время</h2>
+                <p>Детализация по ключам</p>
+            </div>
+            <div class="stats-card">
+                <div class="stat-row">
+                    <span class="stat-label">💸 Общий расход</span>
+                    <span class="stat-value" id="totalSpent">0 ₽</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">🔑 Ключей выпущено</span>
+                    <span class="stat-value" id="totalKeysCount">0</span>
+                </div>
+            </div>
+            <div id="expenseBreakdown" class="expense-list"></div>
+        </div>
+
+        <!-- Нижнее меню -->
+        <div class="bottom-nav">
+            <button class="nav-item" data-page="mainPage">
+                <span class="nav-icon">🏠</span>
+                <span>Главная</span>
+            </button>
+            <button class="nav-item" data-page="devicesPage">
+                <span class="nav-icon">📱</span>
+                <span>Устройства</span>
+            </button>
+            <button class="nav-item" data-page="paymentPage">
+                <span class="nav-icon">💳</span>
+                <span>Оплата</span>
+            </button>
+            <button class="nav-item" data-page="optionsPage">
+                <span class="nav-icon">⚙️</span>
+                <span>Опции</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для инструкции -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
